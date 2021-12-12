@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תרגול לוח הכפל</title>
+    <style>
+        body {
+            font-size: 2.5rem;
+        }
+
+        .container {
+            width: 900px;
+            height: 600px;
+            margin: auto auto;
+            border: 1px solid black;
+            padding: 20px;
+        }
+
+        #num1,
+        #num2,
+        #result {
+            width: 60px;
+            color: black;
+            font-size: 2rem;
+        }
+
+        #checkAnswer,
+        #nextQuiz {
+            width: 150px;
+            height: 40px;
+            font-size: 1.5rem;
+            color: white;
+            background-color: #000;
+        }
+
+        #checkAnswer:hover,
+        #nextQuiz:hover {
+            color: red;
+            font-weight: bold;
+        }
+
+        #checkAnswer:active,
+        #nextQuiz:active {
+            position: absolute;
+            box-shadow: 0px 10px #000;
+            margin-top: 5px;
+
+        }
+
+        #nextQuiz {
+            position: absolute;
+            top: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Multiple Training</h1>
+        <form action="">
+            <input type="text" id="num1">
+            X
+            <input type="text" id="num2">
+            =
+            <input type="text" id="result"><br>
+            <input type="button" value="בדוק תוצאה" id="checkAnswer">
+        </form>
+        <p id="theRes"></p>
+        <button id="nextQuiz">next Q</button>
+    </div>
+    <script>
+        document.getElementById("num1").value = Math.floor(Math.random() * 10);
+        document.getElementById("num2").value = Math.floor(Math.random() * 10);
+        document.getElementById("checkAnswer").onclick = function () {
+            let firNum = document.getElementById("num1").value;
+            let secNum = document.getElementById("num2").value;
+            let resNum = document.getElementById("result").value;
+            let a = 0;
+            let firNum2 = parseInt(firNum);
+            let secNum2 = parseInt(secNum);
+            let resNum2 = parseInt(resNum);
+            if (resNum2 == firNum2 * secNum2) {
+                document.getElementById("theRes").innerHTML = "<span style='color:green;'>כל הכבוד</span>";
+                a++;
+                console.log(a);
+                setTimeout(function () {
+                    window.location.reload();
+
+                }, 1000);
+
+
+
+            } else {
+                document.getElementById("theRes").innerHTML =
+                    "<span style='color:red;'>תשובה לא נכונה, נסה שנית</span>";
+                let resNum1 = document.getElementById("result");
+                resNum1.value = "";
+
+
+            }
+
+        }
+        document.getElementById("nextQuiz").onclick = function () {
+            window.location.reload();
+        }
+        var input = document.getElementById("result");
+        input.addEventListener("keyup", function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("checkAnswer").click();
+            }
+
+        });
+        let resNum1 = document.getElementById("result");
+        resNum1.focus();
+    </script>
+</body>
+
+</html>
